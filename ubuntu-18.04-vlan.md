@@ -77,4 +77,48 @@ network:
       id: 3
       link: ens34
       addresses: [10.10.90.1/24]
-```    
+```
+
+## apply config
+
+```
+netplan apply
+```
+
+
+## network bridge interface on top of vlan
+
+```
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp2s0:
+      dhcp4: no
+      dhcp6: no
+
+  bridges:
+    br0:
+      dhcp4: no
+      dhcp6: no
+      interfaces:
+        - enp2s0
+      addresses: [ 192.168.6.17/25 ]
+      gateway4: 192.168.6.1
+      nameservers:
+          addresses:
+              - "192.100.77.10"
+  vlans:
+    vlan7:
+      id: 7
+      link: enp2s0
+
+  bridges:
+    br1:
+      dhcp4: no
+      dhcp6: no
+      interfaces:
+        - vlan7
+      addresses: [ 192.168.6.201/25 ]
+      gateway4: 192.168.6.129
+```
