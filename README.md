@@ -1,6 +1,14 @@
 # lern-ubuntu
 lerning ubuntu
 
+## disable unuse service check by `netstat -tulpn`
+
+```bash
+systemctl disable nmbd && systemctl stop nmbd
+systemctl disable smbd && systemctl stop smbd
+systemctl disable cups && systemctl stop cups
+```
+
 ## setting ipaddress
 
 NetworkManager = GUI
