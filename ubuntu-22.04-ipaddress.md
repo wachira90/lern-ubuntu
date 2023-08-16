@@ -5,7 +5,7 @@ network:
   version: 2
   ethernets:
     ens33:
-      dhcp4: true
+      dhcp4: false
       dhcp6: false
       optional: true
       addresses: [192.168.6.119/24]
